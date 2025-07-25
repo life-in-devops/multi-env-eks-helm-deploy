@@ -1,0 +1,62 @@
+replicaCount: 1
+
+image:
+  repository: hashicorp/http-echo
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+args:
+  - "-text=Hello from {{ .Values.environment | default \"dev\" }} via ALB!"
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext: {}
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  host: ""
+  certificateArn: ""
+  className: ""
+  annotations: {}
+
+resources: {}
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+volumes: []
+volumeMounts: []
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+environment: dev

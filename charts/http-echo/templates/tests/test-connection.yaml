@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "hello-app.fullname" . }}-test"
+  labels:
+    {{- include "hello-app.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: curl
+      image: curlimages/curl
+      args: ["curl", "-f", "http://{{ include "hello-app.fullname" . }}:{{ .Values.service.port }}/"]
+  restartPolicy: Never

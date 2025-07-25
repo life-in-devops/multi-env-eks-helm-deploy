@@ -1,0 +1,12 @@
+replicaCount: 1
+
+environment: qa
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  host: hello.qa.devopsprojectsdomain.online
+  certificateArn: arn:aws:acm:ap-south-1:539188695824:certificate/d09b9b66-fedb-4119-927d-98f2b0d65cdd
