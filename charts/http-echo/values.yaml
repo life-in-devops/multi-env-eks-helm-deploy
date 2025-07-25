@@ -6,7 +6,8 @@ image:
   tag: "latest"
 
 args:
-  - -text=Hello from {{ .Values.environment }} via ALB!
+  - "-text=Hello from PLACEHOLDER via ALB!"
+
 
 nameOverride: ""
 fullnameOverride: ""

@@ -18,6 +18,7 @@ spec:
         - name: http-echo
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          args: {{- toYaml .Values.args | nindent 12 }}
+          args:
+            - "-text=Hello from {{ .Values.environment }} via ALB!"
           ports:
             - containerPort: 5678
